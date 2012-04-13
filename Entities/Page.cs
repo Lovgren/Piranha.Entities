@@ -29,6 +29,7 @@ namespace Piranha.Entities
 		public Permalink Permalink { get ; set ; }
 		public IList<Region> Regions { get ; set ; }
 		public IList<Property> Properties { get ; set ; }
+		public IList<Content> Content { get ; set ; }
 		#endregion
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,25 @@ namespace Piranha.Data
 			modelBuilder.Configurations.Add(new Entities.Maps.UploadMap()) ;
 
 			base.OnModelCreating(modelBuilder);
+		}
+
+		/// <summary>
+		/// Saves the changes made to the context.
+		/// </summary>
+		/// <returns>The numbe of changes saved.</returns>
+		public override int SaveChanges() {
+			foreach (var entity in this.ChangeTracker.Entries()) {
+				//
+				// Call the correct software trigger.
+				//
+				if (entity.Entity is Entities.BaseEntity) {
+					if (entity.State == EntityState.Added || entity.State == EntityState.Modified)
+						((Entities.BaseEntity)entity.Entity).OnSave(entity.State) ;
+					else if (entity.State == EntityState.Deleted)
+						((Entities.BaseEntity)entity.Entity).OnDelete() ;
+				}
+			}
+			return base.SaveChanges();
 		}
 	}
 }

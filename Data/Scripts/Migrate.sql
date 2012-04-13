@@ -66,4 +66,20 @@ INSERT INTO [Posts] ([Id], [IsDraft], [TemplateId], [PermalinkId], [Title], [Exc
 		post_attachments, post_controller, post_archive_controller, post_created, post_updated, post_published, post_last_published, post_created_by, post_updated_by
 	FROM post;
 
+INSERT INTO [Content] ([Id], [Name], [Filename], [Type], [Size], [IsImage], [Width], [Height], [AltText], [Description], [Created], [Updated],
+		[CreatedById], [UpdatedById])
+	SELECT content_id,
+	content_filename,
+	content_type,
+	content_size,
+	content_image,
+	content_width,
+	content_height,
+	content_alt,
+	content_description,
+	content_created,
+	content_updated,
+	content_created_by,
+	content_updated_by
+
 -- TODO: Add migration scripts for Content & Upload

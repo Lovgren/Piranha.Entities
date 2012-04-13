@@ -214,6 +214,7 @@ CREATE TABLE [Posts] (
 	CONSTRAINT FK_PostUpdatedById FOREIGN KEY ([UpdatedById]) REFERENCES [Users] ([Id])
 );
 
+-- EXEC sp_rename 'content', 'content_old';
 CREATE TABLE [Content] (
 	[Id] UNIQUEIDENTIFIER NOT NULL,
 	[Name] NVARCHAR(64) NOT NULL,
@@ -232,6 +233,15 @@ CREATE TABLE [Content] (
 	CONSTRAINT PK_ContentId PRIMARY KEY ([Id]),
 	CONSTRAINT FK_ContentCreatedById FOREIGN KEY ([CreatedById]) REFERENCES [Users] ([Id]),
 	CONSTRAINT FK_ContentUpdatedById FOREIGN KEY ([UpdatedById]) REFERENCES [Users] ([Id])
+);
+
+CREATE TABLE [Attachments] (
+	[Id] UNIQUEIDENTIFIER NOT NULL,
+	[ParentId] UNIQUEIDENTIFIER NOT NULL,
+	[ContentId] UNIQUEIDENTIFIER NOT NULL,
+	[Seqno] INT NOT NULL default(1),
+	CONSTRAINT PK_AttachmentId PRIMARY KEY ([Id]),
+	CONSTRAINT FK_AttachmentContentId FOREIGN KEY ([ContentId]) REFERENCES [Content] ([Id])
 );
 
 CREATE TABLE [Uploads] (

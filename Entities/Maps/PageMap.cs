@@ -29,6 +29,7 @@ namespace Piranha.Entities.Maps
 			HasRequired(p => p.Permalink) ;
 			HasMany(p => p.Regions).WithRequired(r => r.Page) ;
 			HasMany(p => p.Properties).WithRequired().HasForeignKey(pr => new { pr.ParentId, pr.IsDraft }) ;
+			HasMany(p => p.Content).WithMany().Map(m => m.ToTable("Attachments").MapLeftKey("ParentId").MapRightKey("ContentId")) ;
 		}
 	}
 }
