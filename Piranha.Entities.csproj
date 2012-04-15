@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Extensions\GroupExtensions.cs" />
+    <Compile Include="Extensions\GroupExtensions.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\DraftEntity.cs" />
     <Compile Include="Entities\IBaseEntity.cs" />

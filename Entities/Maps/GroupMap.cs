@@ -20,6 +20,9 @@ namespace Piranha.Entities.Maps
 
 			HasOptional(g => g.Parent) ;
 			HasMany(g => g.Users).WithOptional(u => u.Group) ;
+
+			Ignore(g => g.Level) ;
+			Ignore(g => g.Groups) ;
 		}
 	}
 

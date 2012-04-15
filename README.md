@@ -7,4 +7,4 @@ library can't be used as en EF entrypoint to the current Piranha Core at this
 stage.
 
 If you have solid experience in Entity Framwork and want to contribute in
-porting the Piranah Core application don't hesitate to contact me.
+porting the Piranha Core application don't hesitate to contact me.
