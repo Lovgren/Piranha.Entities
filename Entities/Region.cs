@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Piranha.Entities
 {
-	public class Region : BaseEntity
+	public class Region : BaseEntity<Region>
 	{
 		#region Fields
 		public bool IsDraft { get ; set ; }

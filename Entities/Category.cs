@@ -8,7 +8,7 @@ namespace Piranha.Entities
 	/// <summary>
 	/// Category entitiy.
 	/// </summary>
-	public class Category : BaseEntity
+	public class Category : BaseEntity<Category>
 	{
 		#region Fields
 		/// <summary>

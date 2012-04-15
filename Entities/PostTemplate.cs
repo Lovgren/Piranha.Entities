@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Piranha.Entities
 {
-	public class PostTemplate : BaseEntity
+	public class PostTemplate : BaseEntity<PostTemplate>
 	{
 		#region Fields
 		public string Name { get ; set ; }

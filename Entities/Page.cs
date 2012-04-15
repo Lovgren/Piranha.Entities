@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Piranha.Entities
 {
-	public class Page : DraftEntity
+	public class Page : DraftEntity<Page>
 	{
 		#region Fields
 		public Guid TemplateId { get ; set ; }

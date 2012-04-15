@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Piranha.Entities
 {
-	public class Permalink : BaseEntity
+	public class Permalink : BaseEntity<Permalink>
 	{
 		#region Fields
 		public string Type { get ; set ; }

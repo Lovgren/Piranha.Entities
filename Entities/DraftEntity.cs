@@ -8,7 +8,7 @@ namespace Piranha.Entities
 	/// <summary>
 	/// Base class for draftable entities in the Piranha entity model.
 	/// </summary>
-	public abstract class DraftEntity : BaseEntity
+	public abstract class DraftEntity<T> : BaseEntity<T> where T : BaseEntity<T>
 	{
 		#region Fields
 		/// <summary>

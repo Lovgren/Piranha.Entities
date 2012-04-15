@@ -8,7 +8,7 @@ namespace Piranha.Entities
 	/// <summary>
 	/// Param entity.
 	/// </summary>
-	public class Param : BaseEntity
+	public class Param : BaseEntity<Param>
 	{
 		#region Fields
 		public string Name { get ; set ; }

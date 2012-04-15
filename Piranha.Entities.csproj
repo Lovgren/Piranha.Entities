@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Extensions\GroupExtensions.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\DraftEntity.cs" />
+    <Compile Include="Entities\IBaseEntity.cs" />
     <Compile Include="Entities\Maps\BaseEntityMap.cs" />
     <Compile Include="Entities\Maps\CategoryMap.cs" />
     <Compile Include="Entities\Maps\ContentMap.cs" />
@@ -80,6 +82,9 @@
     <Compile Include="Entities\Region.cs" />
     <Compile Include="Entities\Upload.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Models\Manager\SettingModels\GroupListModel.cs" />
+    <Compile Include="Models\Manager\SettingModels\ParamEditModel.cs" />
+    <Compile Include="Models\Manager\SettingModels\ParamListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

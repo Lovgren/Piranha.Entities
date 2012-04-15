@@ -8,7 +8,7 @@ namespace Piranha.Entities
 	/// <summary>
 	/// Property entity.
 	/// </summary>
-	public class Property : DraftEntity
+	public class Property : DraftEntity<Property>
 	{
 		#region Fields
 		/// <summary>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Piranha.Entities
 {
-	public class Content : BaseEntity
+	public class Content : BaseEntity<Content>
 	{
 		#region Fields
 		public string Name { get ; set ; }

@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Web;
+
+using Piranha.Data;
 
 namespace Piranha.Entities
 {
 	/// <summary>
 	/// Base class for entities in the Piranha entity model.
 	/// </summary>
-	public abstract class BaseEntity
+	public abstract class BaseEntity<T> : IBaseEntity where T : BaseEntity<T>
 	{
 		#region Fields
 		/// <summary>
@@ -53,6 +56,19 @@ namespace Piranha.Entities
 		#endregion
 
 		/// <summary>
+		/// Attaches the current entity to the context.
+		/// </summary>
+		/// <param name="db">The context</param>
+		/// <param name="state">Optional state</param>
+		public void Attach(PiranhaContext db, EntityState? state = null) {
+			if (state == null) {
+				if (this.Id == Guid.Empty || db.Set<T>().Count(t => t.Id == this.Id) == 0)
+					db.Entry(this).State = EntityState.Added ;
+				else db.Entry(this).State = EntityState.Modified ;
+			} else db.Entry(this).State = state.Value ;
+		}
+
+		/// <summary>
 		/// Executed before the entity is saved by the context.
 		/// </summary>
 		/// <param name="state">The current entity state</param>
@@ -79,5 +95,11 @@ namespace Piranha.Entities
 			if (!HttpContext.Current.User.Identity.IsAuthenticated)
 				throw new AccessViolationException("User must be logged in to delete data.") ;
 		}
+
+		/// <summary>
+		/// Executed when an entity should be invalidated from any potential cache.
+		/// </summary>
+		/// <param name="state">The entity state</param>
+		public virtual void OnInvalidate(EntityState state) {}
 	}
 }

@@ -8,7 +8,7 @@ namespace Piranha.Entities
 	/// <summary>
 	/// Permission entity.
 	/// </summary>
-	public class Permission : BaseEntity
+	public class Permission : BaseEntity<Permission>
 	{
 		#region Fields
 		public Guid GroupId { get ; set ; }

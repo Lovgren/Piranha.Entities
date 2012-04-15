@@ -11,7 +11,7 @@ namespace Piranha.Entities.Maps
 	/// and relations for CreateBy and UpdatedBy.
 	/// </summary>
 	/// <typeparam name="T">The entity type</typeparam>
-	public abstract class BaseEntityMap<T> : EntityTypeConfiguration<T> where T : BaseEntity
+	public abstract class BaseEntityMap<T> : EntityTypeConfiguration<T> where T : BaseEntity<T>
 	{
 		/// <summary>
 		/// Default constructur. Sets up the basic entity mapping.

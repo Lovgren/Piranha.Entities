@@ -12,6 +12,7 @@ namespace Piranha.Data
 	/// </summary>
 	public class PiranhaContext : DbContext
 	{
+		#region DbSets
 		public DbSet<Entities.User> Users { get ; set ; }
 		public DbSet<Entities.Group> Groups { get ; set ; }
 		public DbSet<Entities.Permission> Permissions { get ; set ; }
@@ -26,6 +27,7 @@ namespace Piranha.Data
 		public DbSet<Entities.Property> Properties { get ; set ; }
 		public DbSet<Entities.Content> Content { get ; set ; }
 		public DbSet<Entities.Upload> Uploads { get ; set ; }
+		#endregion
 
 		/// <summary>
 		/// Default constructor. Creates a new db context.
@@ -65,11 +67,14 @@ namespace Piranha.Data
 				//
 				// Call the correct software trigger.
 				//
-				if (entity.Entity is Entities.BaseEntity) {
-					if (entity.State == EntityState.Added || entity.State == EntityState.Modified)
-						((Entities.BaseEntity)entity.Entity).OnSave(entity.State) ;
-					else if (entity.State == EntityState.Deleted)
-						((Entities.BaseEntity)entity.Entity).OnDelete() ;
+				if (entity.Entity is Entities.IBaseEntity) {
+					if (entity.State == EntityState.Added || entity.State == EntityState.Modified) {
+						((Entities.IBaseEntity)entity.Entity).OnSave(entity.State) ;
+						((Entities.IBaseEntity)entity.Entity).OnInvalidate(entity.State) ;
+					} else if (entity.State == EntityState.Deleted) {
+						((Entities.IBaseEntity)entity.Entity).OnDelete() ;
+						((Entities.IBaseEntity)entity.Entity).OnInvalidate(entity.State) ;
+					}
 				}
 			}
 			return base.SaveChanges();
