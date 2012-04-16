@@ -5,19 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-using Piranha.Data;
 using Piranha.Entities;
 
 /// <summary>
-/// Extensions for the group entity.
+/// Group DbSet factory extensions.
 /// </summary>
-public static class GroupExtensions
+public static class GroupFactory
 {
 	/// <summary>
-	/// Gets the recurisvely sorted group strucutre.
+	/// Gets the group structure.
 	/// </summary>
-	/// <param name="db">The current db set.</param>
-	/// <returns>The groups</returns>
+	/// <returns>The group structure</returns>
 	public static List<Group> Structure(this DbSet<Group> db) {
 		if (HttpContext.Current.Cache[typeof(Group).Name] == null) {
 			HttpContext.Current.Cache[typeof(Group).Name] = 
@@ -27,19 +25,11 @@ public static class GroupExtensions
 	}
 
 	/// <summary>
-	/// Flattens the recursive group structure into a one dimensional list.
+	/// Gets the group structure flattened to a one dimensional list.
 	/// </summary>
-	/// <param name="groups">The group structure</param>
-	/// <returns>A flattened list</returns>
-	public static List<Group> Flatten(this List<Group> groups) {
-		var ret = new List<Group>() ;
-
-		foreach (var group in groups) {
-			ret.Add(group) ;
-			if (group.Groups.Count > 0)
-				ret.AddRange(Flatten(group.Groups)) ;
-		}
-		return ret ;
+	/// <returns></returns>
+	public static List<Group> GetFlattenedStructure(this DbSet<Group> db) {
+		return Flatten(Structure(db)) ;
 	}
 
 	#region Private methods
@@ -61,6 +51,22 @@ public static class GroupExtensions
 			}
 		}
 		return ret;
+	}
+
+	/// <summary>
+	/// Flattens the recursive group structure into a one dimensional list.
+	/// </summary>
+	/// <param name="groups">The group structure</param>
+	/// <returns>A flattened list</returns>
+	public static List<Group> Flatten(List<Group> groups) {
+		var ret = new List<Group>() ;
+
+		foreach (var group in groups) {
+			ret.Add(group) ;
+			if (group.Groups.Count > 0)
+				ret.AddRange(Flatten(group.Groups)) ;
+		}
+		return ret ;
 	}
 	#endregion
 }

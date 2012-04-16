@@ -34,7 +34,7 @@ namespace Piranha.Models.Manager.SettingModels
 			var m = new GroupListModel() ;
 
 			using (var db = new Data.PiranhaContext()) {
-				m.Groups = db.Groups.Structure().Flatten() ;
+				m.Groups = db.Groups.GetFlattenedStructure() ;
 			}
 			return m ;
 		}
