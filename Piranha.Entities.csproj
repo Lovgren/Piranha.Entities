@@ -86,6 +86,8 @@
     <Compile Include="Models\Manager\SettingModels\GroupListModel.cs" />
     <Compile Include="Models\Manager\SettingModels\ParamEditModel.cs" />
     <Compile Include="Models\Manager\SettingModels\ParamListModel.cs" />
+    <Compile Include="Models\Manager\SettingModels\PermissionEditModel.cs" />
+    <Compile Include="Models\Manager\SettingModels\PermissionListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
