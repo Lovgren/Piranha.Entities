@@ -7,17 +7,25 @@ using System.Text;
 namespace Piranha.Entities.Maps
 {
 	/// <summary>
-	/// Entity configuration map for the param.
+	/// Entity map for the param
 	/// </summary>
-	internal class ParamMap : BaseEntityMap<Param> 
+	internal class ParamMap : EntityTypeConfiguration<Param>
 	{
-		/// <summary>
-		/// Default constructur. Sets up the basic entity mapping.
-		/// </summary>
-		public ParamMap() : base() {
-			Property(p => p.Name).IsRequired().HasMaxLength(64) ;
-			Property(p => p.Value).HasMaxLength(128) ;
-			Property(p => p.Description).HasMaxLength(255) ;
+		public ParamMap() {
+			ToTable("sysparam") ;
+
+			Property(p => p.Id).HasColumnName("sysparam_id") ;
+			Property(p => p.Name).HasColumnName("sysparam_name").IsRequired().HasMaxLength(64) ;
+			Property(p => p.Value).HasColumnName("sysparam_value").HasMaxLength(128) ;
+			Property(p => p.Description).HasColumnName("sysparam_description").HasMaxLength(255) ;
+			Property(p => p.IsLocked).HasColumnName("sysparam_locked") ;
+			Property(p => p.Created).HasColumnName("sysparam_created") ;
+			Property(p => p.Updated).HasColumnName("sysparam_updated") ;
+			Property(p => p.CreatedById).HasColumnName("sysparam_created_by") ;
+			Property(p => p.UpdatedById).HasColumnName("sysparam_updated_by") ;
+
+			HasOptional(p => p.CreatedBy) ;
+			HasOptional(p => p.UpdatedBy) ;
 		}
 	}
 }

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Piranha.Entities")]
-[assembly: AssemblyDescription("Entity framework mapping for the Piranha Core.")]
+[assembly: AssemblyDescription("Entity framework mapping for the Piranha entities.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("piranhacms.org")]
 [assembly: AssemblyProduct("Piranha.Entities")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f9439aa0-bb4d-4067-be0b-235f25d122cc")]
+[assembly: Guid("ad07082c-3386-4306-af09-20b4eb79c66e")]
 
 // Version information for an assembly consists of the following four values:
 //

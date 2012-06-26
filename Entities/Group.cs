@@ -2,72 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace Piranha.Entities
 {
 	/// <summary>
-	/// Group entity.
+	/// The group entity.
 	/// </summary>
-	public class Group : BaseEntity<Group>
+	public class Group : BaseEntity
 	{
-		#region Fields
+		#region Properties
 		/// <summary>
-		/// Gets/sets the optional parent id.
+		/// Gets/sets the unique group id.
+		/// </summary>
+		public Guid Id { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the id of the optional parent group.
 		/// </summary>
 		public Guid? ParentId { get ; set ; }
 
 		/// <summary>
-		/// Gets/sets the name.
+		/// Gets/sets the unique group name.
 		/// </summary>
 		public string Name { get ; set ; }
 
 		/// <summary>
-		/// Gets/sets the description.
+		/// Gets/sets the group description.
 		/// </summary>
 		public string Description { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the date the group was initially created.
+		/// </summary>
+		public DateTime Created { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the date the group was last updated.
+		/// </summary>
+		public DateTime Updated { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the id of the user who initially created the group.
+		/// </summary>
+		public Guid? CreatedById { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the id of the user who last updated the group.
+		/// </summary>
+		public Guid? UpdatedById { get ; set ; }
 		#endregion
 
-		#region Properties
+		#region Relationships
 		/// <summary>
-		/// Gets/sets the child groups. Note that the groups have to be fetched by using the
-		/// Structure call to be sorted recursively.
+		/// Gets/sets the optional parent group.
 		/// </summary>
-		internal List<Group> Groups { get ; set ; }
+		public Group Parent{ get ; set ; }
 
 		/// <summary>
-		/// Gets/sets the structural level of the group. Note that the groups have to be fetched
-		/// by using the Structure call to be sorted recursively.
-		/// </summary>
-		internal int Level { get ; set ; }
-		#endregion
-
-		/// <summary>
-		/// Default constructor. Creates a new group.
-		/// </summary>
-		public Group() : base() {
-			Groups = new List<Group>() ;
-		}
-
-		#region Associations
-		/// <summary>
-		/// Gets/sets the parent group.
-		/// </summary>
-		public Group Parent { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the users associated with this group.
+		/// Gets/sets the users who belong to the group.
 		/// </summary>
 		public IList<User> Users { get ; set ; }
-		#endregion
 
 		/// <summary>
-		/// Invalidates the group cache.
+		/// Gets/sets the permissions attached to the group.
 		/// </summary>
-		/// <param name="state">The current entity state</param>
-		public override void OnInvalidate(System.Data.EntityState state) {
-			// Invalidate entire cache as groups are recursivly linked
-			HttpContext.Current.Cache.Remove(typeof(Group).Name) ;
-		}
+		public IList<Permission> Permissions { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the user who initially created the group.
+		/// </summary>
+		public User CreatedBy { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the user who last updated the group.
+		/// </summary>
+		public User UpdatedBy { get ; set ; }
+		#endregion
 	}
 }

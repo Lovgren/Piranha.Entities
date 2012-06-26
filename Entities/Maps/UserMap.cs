@@ -7,23 +7,26 @@ using System.Text;
 namespace Piranha.Entities.Maps
 {
 	/// <summary>
-	/// Entity configuration map for the user.
+	/// Entity map for the user.
 	/// </summary>
 	internal class UserMap : EntityTypeConfiguration<User>
 	{
-		/// <summary>
-		/// Default constructur. Sets up the basic entity mapping.
-		/// </summary>
 		public UserMap() {
-			HasKey(u => u.Id) ;
+			ToTable("sysuser") ;
 
-			Property(u => u.Login).IsRequired().HasMaxLength(64) ;
-			Property(u => u.Password).HasMaxLength(64) ;
-			Property(u => u.Firstname).HasMaxLength(128) ;
-			Property(u => u.Surname).HasMaxLength(128) ;
-			Property(u => u.Email).HasMaxLength(128) ;
-			Property(u => u.Culture).HasMaxLength(5) ;
-
+			Property(u => u.Id).HasColumnName("sysuser_id") ;
+			Property(u => u.Login).HasColumnName("sysuser_login").IsRequired().HasMaxLength(64) ;
+			Property(u => u.Password).HasColumnName("sysuser_password").HasMaxLength(64) ;
+			Property(u => u.Firstname).HasColumnName("sysuser_firstname").HasMaxLength(128) ;
+			Property(u => u.Surname).HasColumnName("sysuser_surname").HasMaxLength(128) ;
+			Property(u => u.Email).HasColumnName("sysuser_email").HasMaxLength(128) ;
+			Property(u => u.GroupId).HasColumnName("sysuser_group_id") ;
+			Property(u => u.Culture).HasColumnName("sysuser_culture").HasMaxLength(5) ;
+			Property(u => u.Created).HasColumnName("sysuser_created") ;
+			Property(u => u.Updated).HasColumnName("sysuser_updated") ;
+			Property(u => u.CreatedById).HasColumnName("sysuser_created_by") ;
+			Property(u => u.UpdatedById).HasColumnName("sysuser_updated_by") ;
+	
 			HasOptional(u => u.Group) ;
 		}
 	}

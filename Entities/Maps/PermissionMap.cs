@@ -7,18 +7,26 @@ using System.Text;
 namespace Piranha.Entities.Maps
 {
 	/// <summary>
-	/// Entity configuration map for the permission.
+	/// Entity map for the permission.
 	/// </summary>
-	internal class PermissionMap : BaseEntityMap<Permission>
+	internal class PermissionMap : EntityTypeConfiguration<Permission>
 	{
-		/// <summary>
-		/// Default constructur. Sets up the basic entity mapping.
-		/// </summary>
-		public PermissionMap() : base() {
-			Property(p => p.Name).IsRequired().HasMaxLength(64) ;
-			Property(p => p.Description).HasMaxLength(255) ;
+		public PermissionMap() {
+			ToTable("sysaccess") ;
+
+			Property(p => p.Id).HasColumnName("sysaccess_id") ;
+			Property(p => p.GroupId).HasColumnName("sysaccess_group_id") ;
+			Property(p => p.Name).HasColumnName("sysaccess_function").IsRequired().HasMaxLength(64) ;
+			Property(p => p.Description).HasColumnName("sysaccess_description").HasMaxLength(255) ;
+			Property(p => p.IsLocked).HasColumnName("sysaccess_locked") ;
+			Property(p => p.Created).HasColumnName("sysaccess_created") ;
+			Property(p => p.Updated).HasColumnName("sysaccess_updated") ;
+			Property(p => p.CreatedById).HasColumnName("sysaccess_created_by") ;
+			Property(p => p.UpdatedById).HasColumnName("sysaccess_updated_by") ;
 
 			HasRequired(p => p.Group) ;
+			HasOptional(p => p.CreatedBy) ;
+			HasOptional(p => p.UpdatedBy) ;
 		}
 	}
 }

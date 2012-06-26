@@ -7,16 +7,23 @@ using System.Text;
 namespace Piranha.Entities.Maps
 {
 	/// <summary>
-	/// Entity configuration map for the permalink.
+	/// Entity map for the permalink.
 	/// </summary>
-	internal class PermalinkMap : BaseEntityMap<Permalink> 
+	internal class PermalinkMap : EntityTypeConfiguration<Permalink>
 	{
-		/// <summary>
-		/// Default constructur. Sets up the basic entity mapping.
-		/// </summary>
-		public PermalinkMap() : base() {
-			Property(p => p.Type).IsRequired().HasMaxLength(16) ;
-			Property(p => p.Name).IsRequired().HasMaxLength(128) ;
+		public PermalinkMap() {
+			ToTable("permalink") ;
+
+			Property(p => p.Id).HasColumnName("permalink_id") ;
+			Property(p => p.Type).HasColumnName("permalink_type").IsRequired().HasMaxLength(16) ;
+			Property(p => p.Name).HasColumnName("permalink_name").IsRequired().HasMaxLength(128) ;
+			Property(p => p.Created).HasColumnName("permalink_created") ;
+			Property(p => p.Updated).HasColumnName("permalink_updated") ;
+			Property(p => p.CreatedById).HasColumnName("permalink_created_by") ;
+			Property(p => p.UpdatedById).HasColumnName("permalink_updated_by") ;
+
+			HasRequired(p => p.CreatedBy) ;
+			HasRequired(p => p.UpdatedBy) ;
 		}
 	}
 }

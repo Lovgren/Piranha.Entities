@@ -7,20 +7,29 @@ using System.Text;
 namespace Piranha.Entities.Maps
 {
 	/// <summary>
-	/// Entity configuration map for the post template.
+	/// Entity map for the post template.
 	/// </summary>
-	internal class PostTemplateMap : BaseEntityMap<PostTemplate>
+	internal class PostTemplateMap : EntityTypeConfiguration<PostTemplate>
 	{
-		/// <summary>
-		/// Default constructur. Sets up the basic entity mapping.
-		/// </summary>
-		public PostTemplateMap() : base() {
-			Property(pt => pt.Name).IsRequired().HasMaxLength(64) ;
-			Property(pt => pt.Description).HasMaxLength(255) ;
-			Property(pt => pt.ViewTemplate).HasMaxLength(128) ;
-			Property(pt => pt.ArchiveTemplate).HasMaxLength(128) ;
+		public PostTemplateMap() {
+			ToTable("posttemplate") ;
 
-			HasMany(pt => pt.Properties).WithRequired().HasForeignKey(p => p.TemplateId) ;
+			Property(t => t.Id).HasColumnName("posttemplate_id") ;
+			Property(t => t.Name).HasColumnName("posttemplate_name").IsRequired().HasMaxLength(64) ;
+			Property(t => t.Description).HasColumnName("posttemplate_description").HasMaxLength(255) ;
+			Property(t => t.Preview).HasColumnName("posttemplate_preview") ;
+			Property(t => t.PropertiesJson).HasColumnName("posttemplate_properties") ;
+			Property(t => t.ViewTemplate).HasColumnName("posttemplate_controller").HasMaxLength(128) ;
+			Property(t => t.ShowViewTemplate).HasColumnName("posttemplate_controller_show") ;
+			Property(t => t.ViewArchiveTemplate).HasColumnName("posttemplate_archive_controller").HasMaxLength(128) ;
+			Property(t => t.ShowViewArchiveTemplate).HasColumnName("posttemplate_archive_controller_show") ;
+			Property(t => t.Created).HasColumnName("posttemplate_created") ;
+			Property(t => t.Updated).HasColumnName("posttemplate_updated") ;
+			Property(t => t.CreatedById).HasColumnName("posttemplate_created_by") ;
+			Property(t => t.UpdatedById).HasColumnName("posttemplate_updated_by") ;
+
+			HasRequired(t => t.CreatedBy) ;
+			HasRequired(t => t.UpdatedBy) ;
 		}
 	}
 }

@@ -1,105 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
-using System.Web;
-
-using Piranha.Data;
 
 namespace Piranha.Entities
 {
 	/// <summary>
-	/// Base class for entities in the Piranha entity model.
+	/// Entity base class exposing some events.
 	/// </summary>
-	public abstract class BaseEntity<T> : IBaseEntity where T : BaseEntity<T>
+	public class BaseEntity
 	{
-		#region Fields
 		/// <summary>
-		/// Gets/sets the entity id.
+		/// Attaches the entity to the given context with the specified state.
 		/// </summary>
-		public Guid Id { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the created date.
-		/// </summary>
-		public DateTime Created { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the updated date.
-		/// </summary>
-		public DateTime Updated { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the id of the user who created the entity.
-		/// </summary>
-		public Guid CreatedById { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the id of the user who last updated the entity.
-		/// </summary>
-		public Guid UpdatedById { get ; set ; }
-		#endregion
-
-		#region Associations
-		/// <summary>
-		/// Gets/sets the user who created the entity.
-		/// </summary>
-		public User CreatedBy { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the user who last updated the entity.
-		/// </summary>
-		public User UpdatedBy { get ; set ; }
-		#endregion
-
-		/// <summary>
-		/// Attaches the current entity to the context.
-		/// </summary>
-		/// <param name="db">The context</param>
-		/// <param name="state">Optional state</param>
-		public void Attach(PiranhaContext db, EntityState? state = null) {
-			if (state == null) {
-				if (this.Id == Guid.Empty || db.Set<T>().Count(t => t.Id == this.Id) == 0)
-					db.Entry(this).State = EntityState.Added ;
-				else db.Entry(this).State = EntityState.Modified ;
-			} else db.Entry(this).State = state.Value ;
+		/// <param name="db">The db context</param>
+		/// <param name="state">The entity state</param>
+		public void Attach(DataContext db, EntityState state) {
+			db.Entry(this).State = state ;
 		}
 
 		/// <summary>
-		/// Executed before the entity is saved by the context.
+		/// Called when the entity has been loaded.
+		/// </summary>
+		/// <param name="?"></param>
+		public virtual void OnLoad() {}
+
+		/// <summary>
+		/// Called when the entity is about to get saved.
 		/// </summary>
 		/// <param name="state">The current entity state</param>
-		public virtual void OnSave(EntityState state) {
-			var user = HttpContext.Current.User ;
-
-			if (user.Identity.IsAuthenticated) {
-				if (state == EntityState.Added) {
-					if (Id == Guid.Empty)
-						Id = Guid.NewGuid() ;
-					Created = Updated = DateTime.Now ;
-					CreatedById = UpdatedById = new Guid(user.Identity.Name) ;
-				} else if (state == EntityState.Modified) {
-					Updated = DateTime.Now ;
-					UpdatedById = new Guid(user.Identity.Name) ;
-				}
-			} else throw new AccessViolationException("User must be logged in to save data.") ;
-		}
+		public virtual void OnSave(EntityState state) {}
 
 		/// <summary>
-		/// Executed before the entity is deleted by the context.
+		/// Called when the entity is about to get deleted.
 		/// </summary>
-		public virtual void OnDelete() {
-			if (!HttpContext.Current.User.Identity.IsAuthenticated)
-				throw new AccessViolationException("User must be logged in to delete data.") ;
-		}
-
-		/// <summary>
-		/// Executed when an entity should be invalidated from any potential cache.
-		/// </summary>
-		/// <param name="state">The entity state</param>
-		public virtual void OnInvalidate(EntityState state) {}
+		public virtual void OnDelete() {}
 	}
 }

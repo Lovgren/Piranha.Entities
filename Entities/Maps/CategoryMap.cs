@@ -7,18 +7,27 @@ using System.Text;
 namespace Piranha.Entities.Maps
 {
 	/// <summary>
-	/// Entity configuration map for the category.
+	/// Entity map for the category.
 	/// </summary>
-	public class CategoryMap : BaseEntityMap<Category> 
+	public class CategoryMap : EntityTypeConfiguration<Category>
 	{
-		/// <summary>
-		/// Default constructur. Sets up the basic entity mapping.
-		/// </summary>
-		public CategoryMap() : base() {
-			Property(c => c.Name).IsRequired().HasMaxLength(64) ;
-			Property(c => c.Description).HasMaxLength(255) ;
+		public CategoryMap() {
+			ToTable("category") ;
+
+			Property(c => c.Id).HasColumnName("category_id") ;
+			Property(c => c.ParentId).HasColumnName("category_parent_id") ;
+			Property(c => c.PermalinkId).HasColumnName("category_permalink_id") ;
+			Property(c => c.Name).HasColumnName("category_name").IsRequired().HasMaxLength(64) ;
+			Property(c => c.Description).HasColumnName("category_description").HasMaxLength(255) ;
+			Property(c => c.Created).HasColumnName("category_created") ;
+			Property(c => c.Updated).HasColumnName("category_updated") ;
+			Property(c => c.CreatedById).HasColumnName("category_created_by") ;
+			Property(c => c.UpdatedById).HasColumnName("category_updated_by") ;
 
 			HasOptional(c => c.Parent) ;
+			HasRequired(c => c.Permalink) ;
+			HasRequired(c => c.CreatedBy) ;
+			HasRequired(c => c.UpdatedBy) ;
 		}
 	}
 }
