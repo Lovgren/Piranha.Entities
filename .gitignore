@@ -3,3 +3,4 @@ obj/*
 ._.*
 *.sln
 *.suo
+*.vspscc
