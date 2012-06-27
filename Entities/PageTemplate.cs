@@ -9,14 +9,9 @@ namespace Piranha.Entities
 	/// <summary>
 	/// The page template entity.
 	/// </summary>
-	public class PageTemplate : BaseEntity
+	public class PageTemplate : StandardEntity<PageTemplate>
 	{
 		#region Properties
-		/// <summary>
-		/// Gets/sets the unique template id.
-		/// </summary>
-		public Guid Id { get ; set ; }
-
 		/// <summary>
 		/// Gets/sets the template name.
 		/// </summary>
@@ -61,43 +56,13 @@ namespace Piranha.Entities
 		/// Gets/sets weather the page should be able to override the redirect.
 		/// </summary>
 		public bool ShowViewRedirect { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the date the template was initially created.
-		/// </summary>
-		public DateTime Created { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the date the template was last updated.
-		/// </summary>
-		public DateTime Updated { get ; set ; } 
-
-		/// <summary>
-		/// Gets/sets the id of the user who initially created the template.
-		/// </summary>
-		public Guid CreatedById { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the id of the user who last updated the template.
-		/// </summary>
-		public Guid UpdatedById { get ; set ; }
 		#endregion
 
-		#region Relationships
+		#region Navigation properties
 		/// <summary>
 		/// Gets/sets the pages who have this page type.
 		/// </summary>
 		//IList<Page> Pages { get ; set ; }
-	
-		/// <summary>
-		/// Gets/sets the user who initially created the template.
-		/// </summary>
-		public User CreatedBy { get ; set ; }
-
-		/// <summary>
-		/// Gets/sets the user who last updated the template.
-		/// </summary>
-		public User UpdatedBy { get ; set ; }
 		#endregion
 
 		#region Internal properties

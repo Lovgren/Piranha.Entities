@@ -52,7 +52,7 @@ namespace Piranha.Entities
 		public Guid? UpdatedById { get ; set ; }
 		#endregion
 
-		#region Relationships
+		#region Navigation properties
 		/// <summary>
 		/// Gets/sets the optional parent group.
 		/// </summary>
