@@ -15,6 +15,7 @@ namespace Piranha.Entities.Maps
 			ToTable("permalink") ;
 
 			Property(p => p.Id).HasColumnName("permalink_id") ;
+			Property(p => p.NamespaceId).HasColumnName("permalink_namespace_id") ;
 			Property(p => p.Type).HasColumnName("permalink_type").IsRequired().HasMaxLength(16) ;
 			Property(p => p.Name).HasColumnName("permalink_name").IsRequired().HasMaxLength(128) ;
 			Property(p => p.Created).HasColumnName("permalink_created") ;
@@ -22,6 +23,7 @@ namespace Piranha.Entities.Maps
 			Property(p => p.CreatedById).HasColumnName("permalink_created_by") ;
 			Property(p => p.UpdatedById).HasColumnName("permalink_updated_by") ;
 
+			HasRequired(p => p.Namespace) ;
 			HasRequired(p => p.CreatedBy) ;
 			HasRequired(p => p.UpdatedBy) ;
 		}

@@ -21,10 +21,14 @@ namespace Piranha
 		public DbSet<Entities.Param> Params { get ; set ; }
 		public DbSet<Entities.PageTemplate> PageTemplates { get ; set ; }
 		public DbSet<Entities.PostTemplate> PostTemplates { get ; set ; }
+		public DbSet<Entities.Namespace> Namespaces { get ; set ; }
 		public DbSet<Entities.Permalink> Permalinks { get ; set ; }
 		public DbSet<Entities.Category> Categories { get ; set ; }
+		public DbSet<Entities.Media> Media { get ; set ; }
 		public IQueryable<Entities.Property> Properties { get { return Set<Entities.Property>().Where(p => !p.IsDraft) ; } }
+		public IQueryable<Entities.Region> Regions { get { return Set<Entities.Region>().Where(r => !r.IsDraft) ; } }
 		public IQueryable<Entities.Post> Posts { get { return Set<Entities.Post>().Where(p => !p.IsDraft) ; } }
+		public IQueryable<Entities.Page> Pages { get { return Set<Entities.Page>().Where(p => !p.IsDraft) ; } }
 		#endregion
 
 		/// <summary>
@@ -46,10 +50,14 @@ namespace Piranha
 			modelBuilder.Configurations.Add(new Entities.Maps.ParamMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PageTemplateMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PostTemplateMap()) ;
+			modelBuilder.Configurations.Add(new Entities.Maps.NamespaceMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PermalinkMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.CategoryMap()) ;
+			modelBuilder.Configurations.Add(new Entities.Maps.MediaMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PropertyMap()) ;
+			modelBuilder.Configurations.Add(new Entities.Maps.RegionMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PostMap()) ;
+			modelBuilder.Configurations.Add(new Entities.Maps.PageMap()) ;
 
 			base.OnModelCreating(modelBuilder);
 		}

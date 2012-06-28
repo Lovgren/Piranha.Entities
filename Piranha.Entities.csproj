@@ -61,6 +61,9 @@
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Maps\CategoryMap.cs" />
     <Compile Include="Entities\Maps\GroupMap.cs" />
+    <Compile Include="Entities\Maps\MediaMap.cs" />
+    <Compile Include="Entities\Maps\NamespaceMap.cs" />
+    <Compile Include="Entities\Maps\PageMap.cs" />
     <Compile Include="Entities\Maps\PageTemplateMap.cs" />
     <Compile Include="Entities\Maps\ParamMap.cs" />
     <Compile Include="Entities\Maps\PermalinkMap.cs" />
@@ -68,7 +71,11 @@
     <Compile Include="Entities\Maps\PostMap.cs" />
     <Compile Include="Entities\Maps\PostTemplateMap.cs" />
     <Compile Include="Entities\Maps\PropertyMap.cs" />
+    <Compile Include="Entities\Maps\RegionMap.cs" />
     <Compile Include="Entities\Maps\UserMap.cs" />
+    <Compile Include="Entities\Media.cs" />
+    <Compile Include="Entities\Namespace.cs" />
+    <Compile Include="Entities\Page.cs" />
     <Compile Include="Entities\PageTemplate.cs" />
     <Compile Include="Entities\Param.cs" />
     <Compile Include="Entities\Permalink.cs" />
@@ -76,6 +83,7 @@
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\PostTemplate.cs" />
     <Compile Include="Entities\Property.cs" />
+    <Compile Include="Entities\Region.cs" />
     <Compile Include="Entities\StandardEntity.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="DataExtensions.cs" />

@@ -140,6 +140,16 @@ namespace Piranha.Entities
 			Categories = new List<Category>() ;
 		}
 
+		/// <summary>
+		/// Gets the attachments for the current post.
+		/// </summary>
+		/// <returns>The attachments</returns>
+		public IList<Media> GetAttachments() {
+			using (var db = new DataContext()) {
+				return db.Media.Where(m => Attachments.Contains(m.Id)).ToList() ;
+			}
+		}
+
 		#region Events
 		/// <summary>
 		/// Called when the entity has been loaded.
