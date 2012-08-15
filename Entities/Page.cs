@@ -17,6 +17,8 @@ namespace Piranha.Entities
 		/// </summary>
 		internal bool IsDraft { get ; set ; }
 
+        public bool IsNotDraft { get; set; }
+
 		/// <summary>
 		/// Gets/sets the id of the page template.
 		/// </summary>
