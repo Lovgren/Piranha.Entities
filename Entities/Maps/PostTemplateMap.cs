@@ -23,6 +23,7 @@ namespace Piranha.Entities.Maps
 			Property(t => t.ShowViewTemplate).HasColumnName("posttemplate_controller_show") ;
 			Property(t => t.ViewArchiveTemplate).HasColumnName("posttemplate_archive_controller").HasMaxLength(128) ;
 			Property(t => t.ShowViewArchiveTemplate).HasColumnName("posttemplate_archive_controller_show") ;
+			Property(t => t.AllowRss).HasColumnName("posttemplate_rss") ;
 			Property(t => t.Created).HasColumnName("posttemplate_created") ;
 			Property(t => t.Updated).HasColumnName("posttemplate_updated") ;
 			Property(t => t.CreatedById).HasColumnName("posttemplate_created_by") ;

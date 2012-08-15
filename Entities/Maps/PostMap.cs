@@ -19,6 +19,7 @@ namespace Piranha.Entities.Maps
 			Property(p => p.IsDraft).HasColumnName("post_draft") ;
 			Property(p => p.TemplateId).HasColumnName("post_template_id") ;
 			Property(p => p.PermalinkId).HasColumnName("post_permalink_id") ;
+			Property(p => p.AllowRss).HasColumnName("post_rss") ;
 			Property(p => p.Title).HasColumnName("post_title").IsRequired().HasMaxLength(128) ;
 			Property(p => p.Excerpt).HasColumnName("post_excerpt").HasMaxLength(255) ;
 			Property(p => p.Body).HasColumnName("post_body") ;

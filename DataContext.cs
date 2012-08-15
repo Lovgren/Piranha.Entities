@@ -29,6 +29,7 @@ namespace Piranha
 		public IQueryable<Entities.Region> Regions { get { return Set<Entities.Region>().Where(r => !r.IsDraft) ; } }
 		public IQueryable<Entities.Post> Posts { get { return Set<Entities.Post>().Where(p => !p.IsDraft) ; } }
 		public IQueryable<Entities.Page> Pages { get { return Set<Entities.Page>().Where(p => !p.IsDraft) ; } }
+		public DbSet<Entities.Comment> Comments { get ; set ; }
 		#endregion
 
 		/// <summary>
@@ -58,6 +59,7 @@ namespace Piranha
 			modelBuilder.Configurations.Add(new Entities.Maps.RegionMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PostMap()) ;
 			modelBuilder.Configurations.Add(new Entities.Maps.PageMap()) ;
+			modelBuilder.Configurations.Add(new Entities.Maps.CommentMap()) ;
 
 			base.OnModelCreating(modelBuilder);
 		}

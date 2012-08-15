@@ -15,12 +15,15 @@ namespace Piranha.Entities.Maps
 			ToTable("content") ;
 
 			Property(m => m.Id).HasColumnName("content_id") ;
-			Property(m => m.Filename).HasColumnName("content_filename").IsRequired().HasMaxLength(128) ;
-			Property(m => m.ContentType).HasColumnName("content_type").IsRequired().HasMaxLength(255) ;
+			Property(m => m.ParentId).HasColumnName("content_parent_id") ;
+			Property(m => m.Filename).HasColumnName("content_filename").HasMaxLength(128) ;
+			Property(m => m.ContentType).HasColumnName("content_type").HasMaxLength(255) ;
 			Property(m => m.Size).HasColumnName("content_size") ;
 			Property(m => m.IsImage).HasColumnName("content_image") ;
+			Property(m => m.IsFolder).HasColumnName("content_folder") ;
 			Property(m => m.Width).HasColumnName("content_width") ;
 			Property(m => m.Height).HasColumnName("content_height") ;
+			Property(m => m.Name).HasColumnName("content_name").HasMaxLength(128) ;
 			Property(m => m.AltText).HasColumnName("content_alt").HasMaxLength(128) ;
 			Property(m => m.Description).HasColumnName("content_description").HasMaxLength(255) ;
 			Property(m => m.Created).HasColumnName("content_created") ;

@@ -33,6 +33,11 @@ namespace Piranha.Entities
 		public Guid PermalinkId { get ; set ; }
 
 		/// <summary>
+		/// Gets/sets weather to include this post in rss feeds.
+		/// </summary>
+		public bool AllowRss { get ; set ; }
+
+		/// <summary>
 		/// Gets/sets the post title.
 		/// </summary>
 		public string Title { get ; set ; }

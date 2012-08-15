@@ -13,6 +13,13 @@ namespace Piranha.Entities
 	/// <typeparam name="T">The entity type</typeparam>
 	public abstract class StandardEntity<T> : BaseEntity where T : StandardEntity<T>
 	{
+		#region Members
+		/// <summary>
+		/// Weather not authenticated users should be able to save and delete.
+		/// </summary>
+		protected bool AllowAnonymous = false ;
+		#endregion
+
 		#region Properties
 		/// <summary>
 		/// Gets/sets the unique id.
@@ -69,7 +76,7 @@ namespace Piranha.Entities
 		public override void OnSave(System.Data.EntityState state) {
 			var user = HttpContext.Current.User;
 
-			if (user.Identity.IsAuthenticated) {
+			if (user.Identity.IsAuthenticated || AllowAnonymous) {
 				if (state == EntityState.Added) {
 					if (Id == Guid.Empty)
 						Id = Guid.NewGuid() ;
@@ -86,7 +93,7 @@ namespace Piranha.Entities
 		/// Deletes the current entity.
 		/// </summary>
 		public override void OnDelete() {
-			if (!HttpContext.Current.User.Identity.IsAuthenticated)
+			if (!HttpContext.Current.User.Identity.IsAuthenticated && !AllowAnonymous)
 				throw new UnauthorizedAccessException("User must be logged in to delete entity") ;
 		}
 	}

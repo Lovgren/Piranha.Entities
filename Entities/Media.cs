@@ -12,6 +12,11 @@ namespace Piranha.Entities
 	{
 		#region Properties
 		/// <summary>
+		/// Gets/sets the optional parent id.
+		/// </summary>
+		public Guid? ParentId { get ; set ; }
+
+		/// <summary>
 		/// Gets/sets the filename.
 		/// </summary>
 		public string Filename { get ; set ; }
@@ -32,6 +37,11 @@ namespace Piranha.Entities
 		public bool IsImage { get ; set ; }
 
 		/// <summary>
+		/// Gets/sets weather this is a folder.
+		/// </summary>
+		public bool IsFolder { get ; set ; }
+
+		/// <summary>
 		/// Gets/sets the width of the media object in case it is an image.
 		/// </summary>
 		public int? Width { get ; set ; }
@@ -40,6 +50,11 @@ namespace Piranha.Entities
 		/// Gets/sets the height of the media object in case it is an image.
 		/// </summary>
 		public int? Height { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets the media name.
+		/// </summary>
+		public string Name { get ; set ; }
 
 		/// <summary>
 		/// Gets/sets the optional alternative text.

@@ -58,8 +58,10 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Maps\CategoryMap.cs" />
+    <Compile Include="Entities\Maps\CommentMap.cs" />
     <Compile Include="Entities\Maps\GroupMap.cs" />
     <Compile Include="Entities\Maps\MediaMap.cs" />
     <Compile Include="Entities\Maps\NamespaceMap.cs" />

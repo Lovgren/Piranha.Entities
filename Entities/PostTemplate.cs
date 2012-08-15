@@ -51,6 +51,11 @@ namespace Piranha.Entities
 		/// Gets/sets weather the post should be able to override the archive template.
 		/// </summary>
 		public bool ShowViewArchiveTemplate { get ; set ; }
+
+		/// <summary>
+		/// Gets/sets weather to include post in rss feeds.
+		/// </summary>
+		public bool AllowRss { get ; set ; }
 		#endregion
 
 		#region Internal properties
